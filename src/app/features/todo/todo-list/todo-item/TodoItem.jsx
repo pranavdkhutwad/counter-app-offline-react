@@ -17,11 +17,21 @@ const getBorderClass = (priority) => {
   }
 };
 
-function TodoItem({ task }) {
+function TodoItem({ task, onDelete }) {
   return (
     <Card className={`mt-3 ${getBorderClass(task.priority)}`}>
       <Card.Header>
-        <Card.Text>{task.name}</Card.Text>
+        <div className="d-flex justify-content-between">
+          <Card.Text>{task.name}</Card.Text>
+          <div>
+            <i className="fa fa-pencil me-3 text-info" aria-hidden="true"></i>
+            <i
+              onClick={() => onDelete(task.id)}
+              className="fa fa-trash text-danger"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </div>
       </Card.Header>
       <Card.Body>
         <Card.Text>{task.desc}</Card.Text>
